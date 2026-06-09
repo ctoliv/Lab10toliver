@@ -91,6 +91,28 @@ void sprite::load_animated_sprite(int size)
 
 }
 
+void sprite::initSprite(int SCREEN_W, int SCREEN_H)
+{
+	// Give each sprite a random starting position and movement speed.
+	x = rand() % (SCREEN_W - width);
+	y = rand() % (SCREEN_H - height);
+
+	xspeed = rand() % 5 + 1;
+	yspeed = rand() % 5 + 1;
+
+	if (rand() % 2 == 0)
+		xspeed *= -1;
+
+	if (rand() % 2 == 0)
+		yspeed *= -1;
+
+	xdelay = 0;
+	ydelay = 0;
+	xcount = 0;
+	ycount = 0;
+	animdir = 1;
+}
+
 sprite::~sprite()
 {
 	for(int i = 0; i < maxframe; i++)

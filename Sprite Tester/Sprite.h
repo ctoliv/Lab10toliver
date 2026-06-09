@@ -6,6 +6,7 @@ public:
 	void bouncesprite(int SCREEN_W, int SCREEN_H);
 	void load_animated_sprite(int size);
 	void drawSprite();
+	void initSprite(int SCREEN_W, int SCREEN_H);
 	int getX(){return x;}
 	int getY(){return y;}
 

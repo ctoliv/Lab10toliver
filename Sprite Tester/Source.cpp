@@ -2,6 +2,7 @@
 #include <allegro5\allegro_image.h>
 #include "Sprite.h"
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 int main(void)
@@ -27,6 +28,8 @@ int main(void)
 	if(!al_init())										//initialize Allegro
 		return -1;
 
+	srand(time(NULL));
+
 	display = al_create_display(width, height);			//create our display object
 
 	if(!display)										//test display object
@@ -46,7 +49,8 @@ int main(void)
 	for (int i = 0; i < NUM_SPRITES; i++)
 	{
 		aliens[i].load_animated_sprite(9);
-	};
+		aliens[i].initSprite(width, height);
+	}
 
 	while(!done)
 	{
