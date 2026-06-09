@@ -8,9 +8,11 @@ public:
 	void drawSprite();
 	void initSprite(int SCREEN_W, int SCREEN_H);
 	void assignRandomPower();
+	void collision(sprite sprites[], int size, int currentIndex, int SCREEN_W, int SCREEN_H);
 	int getX(){return x;}
 	int getY(){return y;}
-
+	int getWidth() { return width; }
+	int getHeight() { return height; }
 
 private:
 	int x,y;

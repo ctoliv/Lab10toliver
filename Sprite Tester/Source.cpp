@@ -64,6 +64,11 @@ int main(void)
 			{
 				aliens[i].bouncesprite(width, height);
 			}
+
+			for (int i = 0; i < NUM_SPRITES; i++)
+			{
+				aliens[i].collision(aliens, NUM_SPRITES, i, width, height);
+			}
 			redraw = true;
 		}
 		else if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE)

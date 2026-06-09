@@ -135,6 +135,30 @@ void sprite::assignRandomPower()
 		FreezeSprite = true;
 }
 
+void sprite::collision(sprite sprites[], int size, int currentIndex, int SCREEN_W, int SCREEN_H)
+{
+	// Check this sprite against every other sprite.
+	for (int i = 0; i < size; i++)
+	{
+		// Do not check a sprite against itself.
+		if (i == currentIndex)
+			continue;
+
+		// Check whether the two sprite rectangles overlap.
+		if (x < sprites[i].getX() + sprites[i].getWidth() &&
+			x + width > sprites[i].getX() &&
+			y < sprites[i].getY() + sprites[i].getHeight() &&
+			y + height > sprites[i].getY())
+		{
+			CollisionIsTrue = true;
+
+			// Move the sprite to a random location after collision.
+			x = rand() % (SCREEN_W - width);
+			y = rand() % (SCREEN_H - height);
+		}
+	}
+}
+
 sprite::~sprite()
 {
 	for(int i = 0; i < maxframe; i++)
