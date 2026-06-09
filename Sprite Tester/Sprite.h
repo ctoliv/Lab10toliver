@@ -7,6 +7,7 @@ public:
 	void load_animated_sprite(int size);
 	void drawSprite();
 	void initSprite(int SCREEN_W, int SCREEN_H);
+	void assignRandomPower();
 	int getX(){return x;}
 	int getY(){return y;}
 
@@ -19,5 +20,10 @@ private:
 	int xcount,ycount;
 	int curframe,maxframe,animdir;
 	int framecount,framedelay;
+	bool CollisionIsTrue;
+	bool SpinningSprite;
+	bool ScaredSprite;
+	bool BabySprite;
+	bool FreezeSprite;
 	ALLEGRO_BITMAP *image[9];
 };

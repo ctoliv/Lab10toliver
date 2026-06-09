@@ -113,6 +113,28 @@ void sprite::initSprite(int SCREEN_W, int SCREEN_H)
 	animdir = 1;
 }
 
+void sprite::assignRandomPower()
+{
+	// Each sprite receives one random specialty power.
+	CollisionIsTrue = false;
+
+	SpinningSprite = false;
+	ScaredSprite = false;
+	BabySprite = false;
+	FreezeSprite = false;
+
+	int power = rand() % 4;
+
+	if (power == 0)
+		SpinningSprite = true;
+	else if (power == 1)
+		ScaredSprite = true;
+	else if (power == 2)
+		BabySprite = true;
+	else if (power == 3)
+		FreezeSprite = true;
+}
+
 sprite::~sprite()
 {
 	for(int i = 0; i < maxframe; i++)

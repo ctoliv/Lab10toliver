@@ -50,6 +50,7 @@ int main(void)
 	{
 		aliens[i].load_animated_sprite(9);
 		aliens[i].initSprite(width, height);
+		aliens[i].assignRandomPower();
 	}
 
 	while(!done)
