@@ -45,10 +45,10 @@ A FreezeSprite stops its x and y movement for a short time after a collision, th
 
 ## Project Files
 
-- 'Source.cpp' - Main program loop, Allegro setup, event handling, sprite array, and collision calls
-- 'Sprite.h' - Sprite class definition, variables, and function declarations
-- 'Sprite.cpp' - Sprite animation, drawing, movement, collision, and specialty power behavior
-- 'Alien0.bmp' through 'Alien8.bmp' - Animated sprite frames
+- `Source.cpp` - Main program loop, Allegro setup, event handling, sprite array, and collision calls
+- `Sprite.h` - Sprite class definition, variables, and function declarations
+- `Sprite.cpp` - Sprite animation, drawing, movement, collision, and specialty power behavior
+- `Alien0.bmp` through `Alien8.bmp` - Animated sprite frames
 
 ## How to Run
 
