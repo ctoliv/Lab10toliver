@@ -46,6 +46,22 @@ void sprite::drawSprite()
 
 void sprite::updatesprite()
 {
+	if (FreezeSprite && freezeCount > 0)
+	{
+		// Count down while the sprite is frozen.
+		freezeCount--;
+
+		if (framecount++ > framedelay)
+		{
+			framecount = 0;
+			curframe++;
+			if (curframe >= maxframe)
+				curframe = 0;
+		}
+
+		return;
+	}
+
 	//update x position
 	if (++xcount > xdelay)
 	{
@@ -182,6 +198,7 @@ void sprite::assignRandomPower()
 	scale = 1.0;
 	angle = 0;
 	spriteDied = false;
+	freezeCount = 0;
 }
 
 void sprite::collision(sprite sprites[], int size, int currentIndex, int SCREEN_W, int SCREEN_H)
@@ -219,6 +236,12 @@ void sprite::collision(sprite sprites[], int size, int currentIndex, int SCREEN_
 					cout << "The baby sprite died." << endl;
 					spriteDied = true;
 				}
+			}
+
+			if (FreezeSprite)
+			{
+				// Freeze sprites stop moving for 5 seconds after a collision.
+				freezeCount = 300;
 			}
 
 			// Move the sprite to a random location after collision.

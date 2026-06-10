@@ -27,6 +27,7 @@ private:
 	bool ScaredSprite;
 	bool BabySprite;
 	bool FreezeSprite;
+	int freezeCount;
 	float red;
 	float green;
 	float blue;
