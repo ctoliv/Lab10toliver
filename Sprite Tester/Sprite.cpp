@@ -8,7 +8,27 @@ using namespace std;
 
 void sprite::drawSprite()
 {
-	al_draw_bitmap(image[curframe],x,y,0);
+	if (BabySprite)
+	{
+		// Draw baby sprites using their current scale.
+		al_draw_scaled_bitmap(
+			image[curframe],
+			0, 0,
+			width, height,
+			x, y,
+			width * scale, height * scale,
+			0
+		);
+	}
+	else if (ScaredSprite)
+	{
+		// Draw scared sprites with their current tint color.
+		al_draw_tinted_bitmap(image[curframe], al_map_rgba_f(red, green, blue, 1), x, y, 0);
+	}
+	else
+	{
+		al_draw_bitmap(image[curframe], x, y, 0);
+	}
 }
 
 void sprite::updatesprite()
@@ -133,6 +153,15 @@ void sprite::assignRandomPower()
 		BabySprite = true;
 	else if (power == 3)
 		FreezeSprite = true;
+
+	// Start the sprite with normal coloring.
+	red = 1;
+	green = 1;
+	blue = 1;
+
+	// Start the sprite at normal size.
+	scale = 1.0;
+	spriteDied = false;
 }
 
 void sprite::collision(sprite sprites[], int size, int currentIndex, int SCREEN_W, int SCREEN_H)
@@ -151,6 +180,26 @@ void sprite::collision(sprite sprites[], int size, int currentIndex, int SCREEN_
 			y + height > sprites[i].getY())
 		{
 			CollisionIsTrue = true;
+
+			if (ScaredSprite)
+			{
+				// Scared sprites change to a random tint after a collision.
+				red = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
+				green = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
+				blue = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
+			}
+
+			if (BabySprite)
+			{
+				// Baby sprites shrink after collisions.
+				scale = scale / 2;
+
+				if (scale <= 0.05 && spriteDied == false)
+				{
+					cout << "The baby sprite died." << endl;
+					spriteDied = true;
+				}
+			}
 
 			// Move the sprite to a random location after collision.
 			x = rand() % (SCREEN_W - width);

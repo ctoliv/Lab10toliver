@@ -27,5 +27,10 @@ private:
 	bool ScaredSprite;
 	bool BabySprite;
 	bool FreezeSprite;
+	float red;
+	float green;
+	float blue;
+	float scale;
+	bool spriteDied;
 	ALLEGRO_BITMAP *image[9];
 };
