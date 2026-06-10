@@ -8,7 +8,20 @@ using namespace std;
 
 void sprite::drawSprite()
 {
-	if (BabySprite)
+	if (SpinningSprite)
+	{
+		// Spinning sprites rotate around their center while animating.
+		al_draw_rotated_bitmap(
+			image[curframe],
+			width / 2,
+			height / 2,
+			x + width / 2,
+			y + height / 2,
+			angle,
+			0
+		);
+	}
+	else if (BabySprite)
 	{
 		// Draw baby sprites using their current scale.
 		al_draw_scaled_bitmap(
@@ -54,6 +67,12 @@ void sprite::updatesprite()
 		curframe++;
 		if (curframe >= maxframe)
 			curframe = 0;
+	}
+
+	if (SpinningSprite)
+	{
+		// Spinning sprites rotate as they animate.
+		angle += 0.1;
 	}
 }
 
@@ -161,6 +180,7 @@ void sprite::assignRandomPower()
 
 	// Start the sprite at normal size.
 	scale = 1.0;
+	angle = 0;
 	spriteDied = false;
 }
 

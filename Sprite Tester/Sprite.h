@@ -31,6 +31,7 @@ private:
 	float green;
 	float blue;
 	float scale;
+	float angle;
 	bool spriteDied;
 	ALLEGRO_BITMAP *image[9];
 };
